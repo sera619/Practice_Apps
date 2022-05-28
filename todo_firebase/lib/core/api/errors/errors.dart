@@ -1,0 +1,5 @@
+
+class NotAuthenticatedError extends Error{
+
+}
+
