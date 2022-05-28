@@ -82,60 +82,61 @@ class SignUpForm extends StatelessWidget {
                   children: [
                     Text('Welcome',
                         textAlign: TextAlign.left,
-                        style: themeData.textTheme.headline1!.copyWith(letterSpacing: 5,fontSize: 36)),
+                        style: themeData.textTheme.headline1!
+                            .copyWith(letterSpacing: 5, fontSize: 36)),
                     const SizedBox(
                       height: 20,
                     ),
                     Text(
                       'Please register or sign in.',
                       textAlign: TextAlign.left,
-                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 24),
+                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 24,letterSpacing: 3),
                     ),
                   ],
                 ),
                 SizedBox(
                   height: 65,
                 ),
-            
+
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     TextFormField(
-                  cursorColor: AppTheme.headCyan,
-                  validator: validateEmail,
-                  //autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
-                    floatingLabelStyle: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Nocen',
-                      color: AppTheme.headCyan,
-                    ),
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Nocen',
-                      color: AppTheme.darkerCyan,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: themeData.colorScheme.secondary,
-                        width: 1,
+                    TextFormField(
+                      cursorColor: AppTheme.headCyan,
+                      validator: validateEmail,
+                      //autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        floatingLabelStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Nocen',
+                          color: AppTheme.headCyan,
+                        ),
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Nocen',
+                          color: AppTheme.darkerCyan,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: themeData.colorScheme.secondary,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: AppTheme.headCyan,
+                            width: 2,
+                          ),
+                        ),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: AppTheme.headCyan,
-                        width: 2,
-                      ),
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
+                    TextFormField(
                       cursorColor: AppTheme.headCyan,
                       obscureText: true,
                       validator: validatePassword,
@@ -182,23 +183,23 @@ class SignUpForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomBTN(
-                        onPressed: () => {
-                              if (formKey.currentState!.validate())
-                                {
-                                  BlocProvider.of<SignupformBloc>(context).add(
-                                      SignupWithEmailAndPasswordPressed(
-                                          email: _email, password: _password))
-                                }
-                              else
-                                {
-                                  BlocProvider.of<SignupformBloc>(context).add(
-                                      SignupWithEmailAndPasswordPressed(email: null, password: null))
-                                }
-                            },
-                        height: 45,
-                        width: 140,
-                        text: 'Sign In',
-                        ),
+                      onPressed: () => {
+                        if (formKey.currentState!.validate())
+                          {
+                            BlocProvider.of<SignupformBloc>(context).add(
+                                SignupWithEmailAndPasswordPressed(
+                                    email: _email, password: _password))
+                          }
+                        else
+                          {
+                            BlocProvider.of<SignupformBloc>(context)
+                                .add(SignupWithEmailAndPasswordPressed(email: null, password: null))
+                          }
+                      },
+                      height: 45,
+                      width: 140,
+                      text: 'Sign In',
+                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -209,8 +210,8 @@ class SignUpForm extends StatelessWidget {
                                 RegisterWithEmailAndPasswordPressed(
                                     email: _email, password: _password));
                           } else {
-                            BlocProvider.of<SignupformBloc>(context)
-                                .add(RegisterWithEmailAndPasswordPressed(email: null, password: null));
+                            BlocProvider.of<SignupformBloc>(context).add(
+                                RegisterWithEmailAndPasswordPressed(email: null, password: null));
                           }
                         },
                         height: 45,
