@@ -32,8 +32,9 @@ def main():
     os.system('cls')
     options = { 1: 'Start Flutter',
     2: 'Self-Sign App',
+    3: 'Buildrunner',
     0: 'Exit'}
-    print(Orange('>>> Flutter Development-Launcher\n\n1) Start Emulator\n2) Read Self-Sign Key-Information\n\n0) Exit\n'))
+    print(Orange('>>> Flutter Development-Launcher\n\n1) Start Emulator\n2) Read Self-Sign Key-Information\n3)Buildrunner\n\n0) Exit\n'))
     choice = int(input(Green('>>> Enter option: ')))
     if choice not in options:
         os.system('cls')
@@ -47,6 +48,9 @@ def main():
     elif choice == 2:
         print(Blue('>>> Read Sign-Key ... '))
         os.system('keytool -list -v -alias androiddebugkey -keystore C:\debug.keystore')
+    elif choice == 3:
+        print(Blue('>>> Buildrunner ... '))
+        os.system('flutter packages pub run build_runner build')
     elif choice == 0:
         exit(0)
 
