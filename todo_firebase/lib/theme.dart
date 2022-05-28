@@ -15,7 +15,7 @@ class AppTheme {
   // dark color theme
   static const Color _dark_black = Color.fromARGB(255, 12, 12, 12);
   static const Color _dark_darkgreen = Color.fromRGBO(0, 31, 38, 1);
-  static const Color _dark_green = Color.fromARGB(255, 1, 34, 41);
+  static const Color _dark_green = Color.fromARGB(255, 1, 57, 70);
   //static const Color _dark_lightblue = Color.fromRGBO(0, 95, 114, 1);
   static const Color _dark_cyan = Color.fromARGB(255, 2, 247, 255);
   static const Color headCyan = Color.fromARGB(255, 2, 247, 255);
