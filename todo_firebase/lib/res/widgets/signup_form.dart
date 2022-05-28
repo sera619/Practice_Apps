@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
+import 'package:todo_firebase/core/api/failures/auth_failure.dart';
 import 'package:todo_firebase/res/widgets/custombtn.dart';
 import 'package:todo_firebase/theme.dart';
 
@@ -12,6 +13,7 @@ class SignUpForm extends StatelessWidget {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     late String _email;
     late String _password;
+
     String? validateEmail(String? input) {
       const EmailRegex = r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
       if (input == null || input.isEmpty) {
@@ -25,22 +27,39 @@ class SignUpForm extends StatelessWidget {
     }
 
     String? validatePassword(String? input) {
-      const PasswordRegex =
-          r"""^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$""";
+      //const PasswordRegex = r"""^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$""";
       if (input == null || input.isEmpty) {
         return 'Password is required';
-      } else if (RegExp(PasswordRegex).hasMatch(input)) {
+      } else if (input.length >= 8) {
         _password = input;
         return null;
       } else {
-        return 'Password is invalid! Min 8 chars, 1 uppercase,\n1 lowercase, 1 number and 1 special char!';
+        return 'Password is invalid! Min 8 chars!';
+      }
+    }
+    String mapFailureMessage(AuthFailure failure){
+      switch(failure.runtimeType){
+        case ServerFailure:
+          return 'Something went wrong!';
+        case EmailAlreadyInUseFailure:
+          return 'Email is already in use';
+        case InvalidEmailAndPassCombFailure:
+          return 'Invalid email and password combination';
+        default:
+          return 'Something went wrong, please try again later';
       }
     }
 
     return BlocConsumer<SignupformBloc, SignupformState>(
       listener: (context, state) {
-        // TODO: navigate to another page (homepage) if auth is successfully
-        // TODO: show error message if not
+        state.authFailureOrSuccessOption.fold(
+            () => {},
+            (eitherFailureOrSuccess) => eitherFailureOrSuccess.fold(
+                  (failure) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.amberAccent,content: Text(mapFailureMessage(failure))));
+                  },
+                  (_) => print('logged in successfully'),
+                ));
       },
       builder: (context, state) {
         return Form(

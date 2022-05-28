@@ -18,8 +18,6 @@ class CustomBTN extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
     return InkResponse(
       splashColor: AppTheme.headCyan,
       onTap: () => onPressed(),
