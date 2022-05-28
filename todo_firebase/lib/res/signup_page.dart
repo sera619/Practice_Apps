@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_firebase/app/auth/auth_bloc/auth_bloc.dart';
 import 'package:todo_firebase/app/auth/injection/injection.dart';
+import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
 import 'package:todo_firebase/res/widgets/signup_form.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class SignUpPage extends StatelessWidget {
           centerTitle: true,
           title: Text('ToDo FireBase', style: Theme.of(context).textTheme.headline1)),
       body: BlocProvider(
-        create: (context) => sl<AuthBloc>(),
+        create: (context) => sl<SignupformBloc>(),
         child: SignUpForm(),
       ),
     );

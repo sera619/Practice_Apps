@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_firebase/app/auth/auth_bloc/auth_bloc.dart';
+import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
 import 'package:todo_firebase/res/widgets/custombtn.dart';
 import 'package:todo_firebase/theme.dart';
 
@@ -37,7 +37,7 @@ class SignUpForm extends StatelessWidget {
       }
     }
 
-    return BlocConsumer<AuthBloc, AuthState>(
+    return BlocConsumer<SignupformBloc, SignupformState>(
       listener: (context, state) {
         // TODO: navigate to another page (homepage) if auth is successfully
         // TODO: show error message if not
@@ -148,11 +148,11 @@ class SignUpForm extends StatelessWidget {
                 CustomBTN(
                     onPressed: () => {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<AuthBloc>(context)
-                            .add(SignInWithEmailAndPassword(email: _email, password: _password))
+                        BlocProvider.of<SignupformBloc>(context)
+                            .add(SignupWithEmailAndPassword(email: _email, password: _password))
                       } else {
-                        BlocProvider.of<AuthBloc>(context)
-                            .add(SignInWithEmailAndPassword(email: null, password: null))
+                        BlocProvider.of<SignupformBloc>(context)
+                            .add(SignupWithEmailAndPassword(email: null, password: null))
                       }
                     }, height: 40, width: 80, text: 'Sign In'),
                 SizedBox(
@@ -161,10 +161,10 @@ class SignUpForm extends StatelessWidget {
                 CustomBTN(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<AuthBloc>(context)
+                        BlocProvider.of<SignupformBloc>(context)
                             .add(RegisterWithEmailAndPassword(email: _email, password: _password));
                       } else {
-                        BlocProvider.of<AuthBloc>(context)
+                        BlocProvider.of<SignupformBloc>(context)
                             .add(RegisterWithEmailAndPassword(email: null, password: null));
                       }
                     },
