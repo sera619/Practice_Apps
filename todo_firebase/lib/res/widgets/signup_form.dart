@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
 import 'package:todo_firebase/app/routes/router.gr.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
-import 'package:todo_firebase/home/widget/info_btn.dart';
 import 'package:todo_firebase/res/widgets/custombtn.dart';
 import 'package:todo_firebase/theme.dart';
 
