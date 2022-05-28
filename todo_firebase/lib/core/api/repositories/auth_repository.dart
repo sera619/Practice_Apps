@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:todo_firebase/core/api/entities/user.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
 
 abstract class AuthRepository {
@@ -7,6 +8,6 @@ abstract class AuthRepository {
 
   Future<void>signOut();
 
-
+  Option<CustomUser> getSignedInUser();
 
 }
