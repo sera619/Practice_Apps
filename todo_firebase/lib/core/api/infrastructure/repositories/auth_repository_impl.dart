@@ -15,7 +15,7 @@ class AuthRepositoryImpl implements AuthRepository {
       await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code =='email-already-in-use') {
+      if (e.code == 'email-already-in-use') {
         return left(EmailAlreadyInUseFailure());
       } else {
         return left(ServerFailure());
@@ -26,15 +26,21 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<AuthFailure, Unit>> signinWithEmailAndPassword(
       {required String email, required String password}) async {
-            try {
+    try {
       await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code =='wrong-password' || e.code == 'user-not-found') {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         return left(InvalidEmailAndPassCombFailure());
       } else {
         return left(ServerFailure());
       }
     }
   }
+
+  @override
+  Future<void> signOut() => Future.wait([
+        firebaseAuth.signOut(),
+      ]);
+  
 }
