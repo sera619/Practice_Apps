@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
 import 'package:todo_firebase/app/routes/router.gr.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
+import 'package:todo_firebase/home/widget/info_btn.dart';
 import 'package:todo_firebase/res/widgets/custombtn.dart';
 import 'package:todo_firebase/theme.dart';
 
@@ -82,24 +83,23 @@ class SignUpForm extends StatelessWidget {
                     Text('Welcome',
                         textAlign: TextAlign.left,
                         style: themeData.textTheme.headline1!
-                            .copyWith(letterSpacing: 5, fontSize: 36)),
+                            .copyWith(letterSpacing: 5, fontSize: 34)),
                     const SizedBox(
-                      height: 20,
+                      height: 18,
                     ),
                     Text(
                       'Please register or sign in.',
                       textAlign: TextAlign.left,
-                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 20,letterSpacing: 3),
+                      style:
+                          themeData.textTheme.bodyText1!.copyWith(fontSize: 20, letterSpacing: 3),
                     ),
                   ],
                 ),
                 SizedBox(
                   height: 65,
                 ),
-
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                   children: [
                     TextFormField(
                       cursorColor: AppTheme.headCyan,
@@ -177,7 +177,7 @@ class SignUpForm extends StatelessWidget {
                   )
                 ],
                 SizedBox(
-                  height: 85,
+                  height: 70,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -217,9 +217,16 @@ class SignUpForm extends StatelessWidget {
                         height: 45,
                         width: 140,
                         text: 'Register'),
+                    SizedBox(height: 30),
+                    CustomBTN(
+                        onPressed: () {
+                          AutoRouter.of(context).push(InfoPageRoute());
+                        },
+                        height: 45,
+                        width: 140,
+                        text: 'App Info')
                   ],
                 ),
-                // make indicator invisible while state is not submitting or submitted
               ],
             ));
       },
