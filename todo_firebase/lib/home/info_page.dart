@@ -10,15 +10,18 @@ class InfoPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        titleSpacing: 3,
         title: Text(
-          'Info',
+          'App Info',
           style: Theme.of(context).textTheme.headline1,
         ),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
-      body: Center(
+      body:Center(
+        
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5,),
+          padding: EdgeInsets.all(10),
           child: Material(
             elevation: 14,
             shadowColor: Theme.of(context).colorScheme.onPrimary,
@@ -69,7 +72,7 @@ class InfoPage extends StatelessWidget {
                   ),
                   SizedBox(height: 50),
                   Text(
-                    'Need Help?',
+                    'Need Help ?',
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -85,7 +88,7 @@ class InfoPage extends StatelessWidget {
                         .copyWith(fontStyle: FontStyle.italic, fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 25),
                   SocialBTNBar()
                 ],
               ),
