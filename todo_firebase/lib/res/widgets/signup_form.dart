@@ -147,32 +147,39 @@ class SignUpForm extends StatelessWidget {
                 ),
                 CustomBTN(
                     onPressed: () => {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<SignupformBloc>(context)
-                            .add(SignupWithEmailAndPassword(email: _email, password: _password))
-                      } else {
-                        BlocProvider.of<SignupformBloc>(context)
-                            .add(SignupWithEmailAndPassword(email: null, password: null))
-                      }
-                    }, height: 40, width: 80, text: 'Sign In'),
+                          if (formKey.currentState!.validate())
+                            {
+                              BlocProvider.of<SignupformBloc>(context).add(
+                                  SignupWithEmailAndPasswordPressed(
+                                      email: _email, password: _password))
+                            }
+                          else
+                            {
+                              BlocProvider.of<SignupformBloc>(context).add(
+                                  SignupWithEmailAndPasswordPressed(email: null, password: null))
+                            }
+                        },
+                    height: 40,
+                    width: 80,
+                    text: 'Sign In'),
                 SizedBox(
                   height: 20,
                 ),
                 CustomBTN(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<SignupformBloc>(context)
-                            .add(RegisterWithEmailAndPassword(email: _email, password: _password));
+                        BlocProvider.of<SignupformBloc>(context).add(
+                            RegisterWithEmailAndPasswordPressed(
+                                email: _email, password: _password));
                       } else {
                         BlocProvider.of<SignupformBloc>(context)
-                            .add(RegisterWithEmailAndPassword(email: null, password: null));
+                            .add(RegisterWithEmailAndPasswordPressed(email: null, password: null));
                       }
                     },
                     height: 40,
                     width: 80,
                     text: 'Register'),
                 // make indicator invisible while state is not submitting or submitted
-
               ],
             ));
       },
