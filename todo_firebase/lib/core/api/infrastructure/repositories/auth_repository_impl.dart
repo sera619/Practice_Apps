@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:todo_firebase/core/api/entities/user.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:todo_firebase/core/api/repositories/auth_repository.dart';
@@ -42,5 +43,11 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> signOut() => Future.wait([
         firebaseAuth.signOut(),
       ]);
+
+  @override
+  Option<CustomUser> getSignedInUser() {
+    // TODO: implement getSignedInUser
+    throw UnimplementedError();
+  }
   
 }
