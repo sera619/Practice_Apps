@@ -1,0 +1,1 @@
+flutter doctor && flutter emulator --launch pixel
