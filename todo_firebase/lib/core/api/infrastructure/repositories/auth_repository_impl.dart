@@ -3,6 +3,7 @@ import 'package:todo_firebase/core/api/entities/user.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:todo_firebase/core/api/repositories/auth_repository.dart';
+import 'package:todo_firebase/core/api/infrastructure/models/firebase_user_mapper.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth firebaseAuth;
@@ -45,9 +46,5 @@ class AuthRepositoryImpl implements AuthRepository {
       ]);
 
   @override
-  Option<CustomUser> getSignedInUser() {
-    // TODO: implement getSignedInUser
-    throw UnimplementedError();
-  }
-  
+  Option<CustomUser> getSignedInUser() => optionOf(firebaseAuth.currentUser?.toDomain());
 }

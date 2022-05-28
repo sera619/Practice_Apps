@@ -5,7 +5,6 @@ import 'package:todo_firebase/app/auth/auth_bloc/auth_bloc.dart';
 import 'package:todo_firebase/app/auth/injection/injection.dart' as di;
 import 'package:todo_firebase/app/auth/injection/injection.dart';
 import 'package:todo_firebase/app/routes/router.gr.dart' as r;
-import 'package:todo_firebase/res/signup_page.dart';
 import 'package:todo_firebase/theme.dart';
 
 void main() async {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers:[
-        BlocProvider(create: (context) => sl<AuthBloc>(),),
+        BlocProvider(create: (context) => sl<AuthBloc>()..add(AuthCheckRequestedEvent()),),
       ],
       
       child: MaterialApp.router(

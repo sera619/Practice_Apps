@@ -1,7 +1,7 @@
+import 'package:todo_firebase/core/api/entities/unique_id.dart';
 
+class CustomUser {
+  final UniqueID id;
 
-class CustomUser{
-
-
-  
+  CustomUser({required this.id});
 }

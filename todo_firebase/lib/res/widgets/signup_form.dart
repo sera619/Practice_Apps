@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +89,7 @@ class SignUpForm extends StatelessWidget {
                     Text(
                       'Please register or sign in.',
                       textAlign: TextAlign.left,
-                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 24,letterSpacing: 3),
+                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 20,letterSpacing: 3),
                     ),
                   ],
                 ),
@@ -100,6 +99,7 @@ class SignUpForm extends StatelessWidget {
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  
                   children: [
                     TextFormField(
                       cursorColor: AppTheme.headCyan,
@@ -177,7 +177,7 @@ class SignUpForm extends StatelessWidget {
                   )
                 ],
                 SizedBox(
-                  height: 45,
+                  height: 85,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -201,7 +201,7 @@ class SignUpForm extends StatelessWidget {
                       text: 'Sign In',
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     CustomBTN(
                         onPressed: () {
