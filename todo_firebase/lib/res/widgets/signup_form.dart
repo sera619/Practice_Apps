@@ -72,26 +72,35 @@ class SignUpForm extends StatelessWidget {
                 state.showValidationMessages ? AutovalidateMode.always : AutovalidateMode.disabled,
             key: formKey,
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 35),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 60,
                 ),
-                Text('Welcome',
-                    textAlign: TextAlign.left,
-                    style: themeData.textTheme.headline1!.copyWith(letterSpacing: 5)),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Please register or sign in.',
-                  textAlign: TextAlign.left,
-                  style: themeData.textTheme.bodyText2,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Welcome',
+                        textAlign: TextAlign.left,
+                        style: themeData.textTheme.headline1!.copyWith(letterSpacing: 5,fontSize: 36)),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Please register or sign in.',
+                      textAlign: TextAlign.left,
+                      style: themeData.textTheme.bodyText1!.copyWith(fontSize: 24),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 65,
                 ),
-                TextFormField(
+            
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     TextFormField(
                   cursorColor: AppTheme.headCyan,
                   validator: validateEmail,
                   //autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -126,37 +135,37 @@ class SignUpForm extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                //
-                // PASSWORD FIELD
                 TextFormField(
-                  cursorColor: AppTheme.headCyan,
-                  obscureText: true,
-                  validator: validatePassword,
-                  //autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
-                    floatingLabelStyle: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Nocen',
-                      color: AppTheme.headCyan,
-                    ),
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Nocen',
-                      color: AppTheme.darkerCyan,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: themeData.colorScheme.primary,
-                        width: 1,
+                      cursorColor: AppTheme.headCyan,
+                      obscureText: true,
+                      validator: validatePassword,
+                      //autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        floatingLabelStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Nocen',
+                          color: AppTheme.headCyan,
+                        ),
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Nocen',
+                          color: AppTheme.darkerCyan,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: themeData.colorScheme.primary,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: AppTheme.headCyan, width: 2),
+                        ),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppTheme.headCyan, width: 2),
-                    ),
-                  ),
+                  ],
                 ),
                 if (state.isSubmitting) ...[
                   SizedBox(
@@ -167,42 +176,48 @@ class SignUpForm extends StatelessWidget {
                   )
                 ],
                 SizedBox(
-                  height: 20,
+                  height: 45,
                 ),
-                CustomBTN(
-                    onPressed: () => {
-                          if (formKey.currentState!.validate())
-                            {
-                              BlocProvider.of<SignupformBloc>(context).add(
-                                  SignupWithEmailAndPasswordPressed(
-                                      email: _email, password: _password))
-                            }
-                          else
-                            {
-                              BlocProvider.of<SignupformBloc>(context).add(
-                                  SignupWithEmailAndPasswordPressed(email: null, password: null))
-                            }
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomBTN(
+                        onPressed: () => {
+                              if (formKey.currentState!.validate())
+                                {
+                                  BlocProvider.of<SignupformBloc>(context).add(
+                                      SignupWithEmailAndPasswordPressed(
+                                          email: _email, password: _password))
+                                }
+                              else
+                                {
+                                  BlocProvider.of<SignupformBloc>(context).add(
+                                      SignupWithEmailAndPasswordPressed(email: null, password: null))
+                                }
+                            },
+                        height: 45,
+                        width: 140,
+                        text: 'Sign In',
+                        ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomBTN(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            BlocProvider.of<SignupformBloc>(context).add(
+                                RegisterWithEmailAndPasswordPressed(
+                                    email: _email, password: _password));
+                          } else {
+                            BlocProvider.of<SignupformBloc>(context)
+                                .add(RegisterWithEmailAndPasswordPressed(email: null, password: null));
+                          }
                         },
-                    height: 40,
-                    width: 80,
-                    text: 'Sign In'),
-                SizedBox(
-                  height: 20,
+                        height: 45,
+                        width: 140,
+                        text: 'Register'),
+                  ],
                 ),
-                CustomBTN(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<SignupformBloc>(context).add(
-                            RegisterWithEmailAndPasswordPressed(
-                                email: _email, password: _password));
-                      } else {
-                        BlocProvider.of<SignupformBloc>(context)
-                            .add(RegisterWithEmailAndPasswordPressed(email: null, password: null));
-                      }
-                    },
-                    height: 40,
-                    width: 80,
-                    text: 'Register'),
                 // make indicator invisible while state is not submitting or submitted
               ],
             ));

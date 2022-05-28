@@ -10,12 +10,6 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-          centerTitle: true,
-          leading: null,
-          title: Text('ToDo FireBase', style: Theme.of(context).textTheme.headline1)),
       body: BlocProvider(
         create: (context) => sl<SignupformBloc>(),
         child: SignUpForm(),
