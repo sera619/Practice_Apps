@@ -1,6 +1,9 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_firebase/app/auth/signup_bloc/signupform_bloc.dart';
+import 'package:todo_firebase/app/routes/router.gr.dart';
 import 'package:todo_firebase/core/api/failures/auth_failure.dart';
 import 'package:todo_firebase/res/widgets/custombtn.dart';
 import 'package:todo_firebase/theme.dart';
@@ -37,8 +40,9 @@ class SignUpForm extends StatelessWidget {
         return 'Password is invalid! Min 8 chars!';
       }
     }
-    String mapFailureMessage(AuthFailure failure){
-      switch(failure.runtimeType){
+
+    String mapFailureMessage(AuthFailure failure) {
+      switch (failure.runtimeType) {
         case ServerFailure:
           return 'Something went wrong!';
         case EmailAlreadyInUseFailure:
@@ -54,12 +58,13 @@ class SignUpForm extends StatelessWidget {
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
             () => {},
-            (eitherFailureOrSuccess) => eitherFailureOrSuccess.fold(
-                  (failure) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.amberAccent,content: Text(mapFailureMessage(failure))));
-                  },
-                  (_) => print('logged in successfully'),
-                ));
+            (eitherFailureOrSuccess) => eitherFailureOrSuccess.fold((failure) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.amberAccent,
+                      content: Text(mapFailureMessage(failure))));
+                }, (_) {
+                  AutoRouter.of(context).push(const HomePageRoute());
+                }));
       },
       builder: (context, state) {
         return Form(
