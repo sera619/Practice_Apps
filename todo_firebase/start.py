@@ -34,7 +34,7 @@ def main():
     2: 'Self-Sign App',
     3: 'Buildrunner',
     0: 'Exit'}
-    print(Orange('>>> Flutter Development-Launcher\n\n1) Start Emulator\n2) Read Self-Sign Key-Information\n3)Buildrunner\n\n0) Exit\n'))
+    print(Orange('>>> Flutter Development-Launcher\n\n1) Start Emulator\n2) Read Self-Sign Key-Information\n3) AutoRoute code generation\n\n0) Exit\n'))
     choice = int(input(Green('>>> Enter option: ')))
     if choice not in options:
         os.system('cls')
