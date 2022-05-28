@@ -71,7 +71,7 @@ class SignUpForm extends StatelessWidget {
                 state.showValidationMessages ? AutovalidateMode.always : AutovalidateMode.disabled,
             key: formKey,
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 35),
               children: [
                 const SizedBox(
                   height: 60,
@@ -195,7 +195,7 @@ class SignUpForm extends StatelessWidget {
                                 .add(SignupWithEmailAndPasswordPressed(email: null, password: null))
                           }
                       },
-                      height: 45,
+                      height: 40,
                       width: 140,
                       text: 'Sign In',
                     ),
@@ -213,7 +213,7 @@ class SignUpForm extends StatelessWidget {
                                 RegisterWithEmailAndPasswordPressed(email: null, password: null));
                           }
                         },
-                        height: 45,
+                        height: 40,
                         width: 140,
                         text: 'Register'),
                     SizedBox(height: 30),
@@ -221,7 +221,7 @@ class SignUpForm extends StatelessWidget {
                         onPressed: () {
                           AutoRouter.of(context).push(InfoPageRoute());
                         },
-                        height: 45,
+                        height: 40,
                         width: 140,
                         text: 'App Info')
                   ],
