@@ -44,7 +44,7 @@ def main():
         return main()
     elif choice == 1:
         print(Green('>>> Starting Flutter Emulator ...'))
-        os.system('flutter doctor && flutter emulator --launch pixel')
+        os.system('flutter doctor && flutter emulator --launch pix')
     elif choice == 2:
         print(Green('>>> Read Sign-Key ... '))
         os.system('keytool -list -v -alias androiddebugkey -keystore C:\debug.keystore')
