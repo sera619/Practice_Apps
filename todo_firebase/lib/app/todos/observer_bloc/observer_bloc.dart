@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:todo_firebase/core/api/entities/todo.dart';
 import 'package:todo_firebase/core/api/failures/todo_failure.dart';
-import 'package:todo_firebase/core/api/infrastructure/models/todo_model.dart';
 import 'package:todo_firebase/core/api/repositories/todo_repository.dart';
 
 part 'observer_event.dart';
@@ -27,8 +26,15 @@ class ObserverBloc extends Bloc<ObserverEvent, ObserverState> {
     });
 
     on<TodosUpdatedEvent>((event, emit) => {
+          print(event.failureOrTodos),
           event.failureOrTodos.fold((failure) => emit(ObserverFailure(todoFailure: failure)),
               (todos) => emit(ObserverSuccess(todos: todos))),
         });
+    }
+      
+    @override
+    Future<void> close() async {
+      await _todoStreamSub?.cancel();
+      return super.close();
   }
 }
