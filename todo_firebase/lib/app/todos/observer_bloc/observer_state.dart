@@ -14,6 +14,6 @@ class ObserverFailure extends ObserverState {
 }
 
 class ObserverSuccess extends ObserverState{
-  final List<TodoModel> todos;
+  final List<Todo> todos;
   ObserverSuccess({required this.todos});
 }
