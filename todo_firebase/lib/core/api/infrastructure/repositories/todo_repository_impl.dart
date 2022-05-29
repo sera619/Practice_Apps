@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo_firebase/core/api/errors/errors.dart';
 import 'package:todo_firebase/core/api/failures/todo_failure.dart';
 import 'package:todo_firebase/core/api/entities/todo.dart';
 import 'package:dartz/dartz.dart';
@@ -36,14 +33,14 @@ class TodoRepositoryImpl implements TodoRepository {
 
     yield* userDoc.todoCollection
         .snapshots()
-        .map((snapshot) => Right<TodoFailure, List<Todo>>(
+        .map((snapshot) => right<TodoFailure, List<Todo>>(
             snapshot.docs.map((doc) => TodoModel.fromFirestore(doc).toDomain()).toList()))
         .handleError((e) {
       if (e is FirebaseException) {
         if (e.code.contains('permission-denied') || e.code.contains("PERMISSION_DENIED")) {
-          return Left(InsufficientPermissionsError());
+          return left(InsufficientPermissionsError());
           }else{
-            return Left(UnexpectedFailure());
+            return left(UnexpectedFailure());
           }
       }
     });
